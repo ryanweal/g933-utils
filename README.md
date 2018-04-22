@@ -12,9 +12,11 @@ If you do not wish to install the software you can simply build it and call it:
     target/release/g933-utils set lights-off true
     target/release/g933-utils set lights-red-side true
 
-I added these two above commands to set the g633 to use less power. Upon running either of them it may take a second to take effect.
+I added these two above commands to set the g633 to use less power. Upon running either of them it may take a second to take effect. Sometimes I have to unplug and replug to see the change when turning lights on and off completely.
 
-The setting should persist after running the command, even on the G633.
+The "red" command is just a demonstration. It seems like the commands changed at some point and that is as far as I got looking into adjusting the lighting rather than just outright disabling it.
+
+The setting should persist after running the command, even on the G633, which presumably has no battery.
 
 # Building
 
