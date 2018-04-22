@@ -1,11 +1,30 @@
-# Yotredash
-
-[![Gitter](https://badges.gitter.im/g933-utils/Lobby.svg)](https://gitter.im/g933-utils/Lobby)
+# g933-utils - g633 fork
 
 An application to configure and control the Logitech wireless headsets. G933 and
-G533 are currently supported.
+G533 are currently supported, this fork adds some support for G633.
 
-# Usage
+# Fork notes
+
+This fork adds support for the g633 headset, although obviously battery-related functions are pointless for it. I have done nothing to alleviate this, it simply crashes if you try to do those things.
+
+If you do not wish to install the software you can simply build it and call it:
+
+    target/release/g933-utils set lights-off true
+    target/release/g933-utils set lights-red-side true
+
+I added these two above commands to set the g633 to use less power. Upon running either of them it may take a second to take effect.
+
+The setting should persist after running the command, even on the G633.
+
+# Building
+
+You can build the tool with Cargo by navigating to the git clone directory and executing `cargo build --release`. The executable will now be in the `target/release` directory.
+
+After building, try running `./target/release/g933-utils --help` to see an overview of the commands.
+
+# Installing
+
+You can skip this if you just intend to run it once, such as to disable the lights. You can do that as root after building.
 
 You will need the udev rules installed on your system. Copy `90-logitech.rules` to `/etc/udev/rules.d/` and add your user to the `logitech` group, then run these commands:
 ```
@@ -13,10 +32,6 @@ udevadm control --reload-rules
 udevadm trigger
 ```
 and log out and back in, or alternatively just reboot.
-
-You can build the tool with Cargo by navigating to the git clone directory and executing `cargo build --release`. The executable will now be in the `target/release` directory.
-
-After building, try running `./target/release/g933-utils --help` to see an overview of the commands.
 
 # Hacking
 

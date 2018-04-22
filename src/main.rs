@@ -13,6 +13,7 @@ extern crate log;
 
 use clap::{App, SubCommand};
 use failure::Error;
+use libg933::lights;
 
 fn run() -> Result<(), Error> {
     #[cfg_attr(rustfmt, rustfmt_skip)]
@@ -209,6 +210,28 @@ fn run() -> Result<(), Error> {
             "startup_effect" => {
                 let enable = values[0].parse::<bool>()?;
                 device.enable_startup_effect(enable)?;
+            }
+            "lights-red-side" => {
+              let side = lights::Config{
+                light: lights::Light::Side,
+                effect: lights::Effect::Static{ red: 10, green: 1, blue: 1},
+                profile_type: lights::ProfileType::Permanent,
+              };
+              device.set_lights(&side);
+            }
+            "lights-off" => {
+              let logo = lights::Config{
+                light: lights::Light::Logo,
+                effect: lights::Effect::Off,
+                profile_type: lights::ProfileType::Permanent,
+              };
+              device.set_lights(&logo);
+              let side = lights::Config{
+                light: lights::Light::Side,
+                effect: lights::Effect::Off,
+                profile_type: lights::ProfileType::Permanent,
+              };
+              device.set_lights(&side);
             }
             p => println!("Invalid property: {}", p),
         }
